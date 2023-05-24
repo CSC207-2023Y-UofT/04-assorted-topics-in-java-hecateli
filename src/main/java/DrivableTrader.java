@@ -1,5 +1,4 @@
-/* TODO: Create a subclass of Trader named DrivableTrader
- * This class should be identical to Trader, except that it takes
+/* This class should be identical to Trader, except that it takes
  * only Drivable objects in its inventory, wishlist, etc.
  *
  * The sellingPrice returned should also be overridden. The selling price
@@ -10,4 +9,20 @@
  * Look at DomesticatableTrader.java for an example.
  */
 
+import java.util.ArrayList;
 import java.util.List;
+
+class DrivableTrader extends Trader{
+    private List<Trader> inventory;
+    private List<Trader> wishlist;
+    private int money;
+
+    public DrivableTrader(List<Trader> inventory, List<Trader> wishlist,
+                          int money){
+        super(inventory, wishlist, money);
+    }
+
+    public DrivableTrader(int money){
+        super(money);
+    }
+}

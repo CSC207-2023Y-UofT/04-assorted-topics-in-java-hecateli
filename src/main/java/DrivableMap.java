@@ -7,9 +7,7 @@
  * created the constructor for you already.
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 class DrivableMap {
     HashMap<String, Drivable> drivable_map;
@@ -22,31 +20,48 @@ class DrivableMap {
         drivable_map = new HashMap<>();
     }
 
-    /* TODO: Write a method named addDrivable that takes a String (the ID)
-     *       and a Drivable object. If the ID string does not appear as a key
-     *       in drivable_map, then add the pair to drivable_map.
-     *       Return true if the Drivable was added to drivable_map.
+    /* If the ID string does not appear as a key
+     * in drivable_map, then add the pair to drivable_map.
+     * Return true if the Drivable was added to drivable_map.
      */
+    public Boolean addDrivable(String id, Drivable drivable){
+        if (drivable_map.containsKey(id)){
+            return true;
+        }else{
+            drivable_map.put(id, drivable);
+            return false;
+        }
+    }
 
 
 
-
-    /* TODO: Write a method named hasFasterThan that takes an int (a speed)
-     *       and returns true iff there is at least one item in drivable_map
-     *       that has a maxSpeed >= the speed given.
-     * You may want to use drivable_map.keys() or drivable_map.values() to
-     * iterate through drivable_map.
+    /* Returns true iff there is at least one item in drivable_map
+     * that has a maxSpeed >= the speed given.
      */
+    public Boolean hasFasterThan(int speed){
+        Collection<Drivable> values = drivable_map.values();
+        for (Drivable value: values){
+            if (value.getMaxSpeed() >= speed){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 
-
-
-    /* TODO: Write a method named getTradable that takes no arguments and
-     *       returns a List containing all of the Tradable items in
-     *       drivable_map.
+    /* returns a List containing all of the Tradable items in
+     * drivable_map.
      */
-
+    public List getTradable(){
+        List<Drivable> tradableList = new ArrayList<>();
+        Collection<Drivable> values = drivable_map.values();
+        for (Drivable value: values){
+            if (value instanceof Tradable){
+                tradableList.add(value);
+            }
+        }
+    }
 
 
     
